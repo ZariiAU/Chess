@@ -6,4 +6,6 @@ public class Tile : MonoBehaviour
 {
     public bool occupied;
     public Piece pieceOnTile;
+    public GameObject highlightEffect;
+    public GameObject legalMoveEffect;
 }
