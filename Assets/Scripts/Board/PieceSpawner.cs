@@ -7,17 +7,19 @@ public class PieceSpawner : MonoBehaviour
     [SerializeField] Grid grid;
     [SerializeField] PiecePlacement blackPlacement;
     [SerializeField] PiecePlacement whitePlacement;
+    [SerializeField] AllegianceData whiteData;
+    [SerializeField] AllegianceData blackData;
 
     // Start is called before the first frame update
     void Start()
     {
         grid = GetComponent<Grid>();
 
-        SpawnPieces(whitePlacement.piecePositions, Team.White, "!White Pieces!", "whitePiece");
-        SpawnPieces(blackPlacement.piecePositions, Team.Black, "!Black Pieces!", "blackPiece");
+        SpawnPieces(whitePlacement.piecePositions, whiteData, "!White Pieces!", "whitePiece");
+        SpawnPieces(blackPlacement.piecePositions, blackData, "!Black Pieces!", "blackPiece");
     }
 
-    List<Piece> SpawnPieces(Dictionary<Vector2, Piece> initialPositions, Team team ,string containerName, string gameObjectName)
+    List<Piece> SpawnPieces(Dictionary<Vector2, Piece> initialPositions, AllegianceData team ,string containerName, string gameObjectName)
     {
         List<Piece> piecesSpawned = new List<Piece>();
 
@@ -35,7 +37,14 @@ public class PieceSpawner : MonoBehaviour
                 go.transform.position = new Vector3(key.x, 0, key.y);
                 go.gameObject.name = $"{gameObjectName}: {key.x}:{key.y}";
                 go.transform.parent = pieceContainer.transform;
+
                 grid.gridDimensions[(int)key.x, (int)key.y].pieceOnTile = piece; // Setup the tile underneath this piece
+
+                foreach(MeshRenderer mr in go.GetComponentsInChildren<MeshRenderer>())
+                {
+                    mr.material = team.teamMaterial;
+                }
+                
                 piecesSpawned.Add(go.GetComponent<Piece>());
             }
         }

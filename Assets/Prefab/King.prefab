@@ -83,6 +83,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 2.106815
       objectReference: {fileID: 0}
+    - target: {fileID: -5568371526223589888, guid: 6ee22e30bc259104eab7fa94f5533a5b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -2577548232221058511, guid: 6ee22e30bc259104eab7fa94f5533a5b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -107,6 +112,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 2.1700003
+      objectReference: {fileID: 0}
+    - target: {fileID: 9013638940889411661, guid: 6ee22e30bc259104eab7fa94f5533a5b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -135,4 +145,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e26a23bd53a17eb45939dbe02de6e23f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pieceName: 
+  team: 0
+  legalMovePoints: []

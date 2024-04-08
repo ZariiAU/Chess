@@ -193,6 +193,8 @@ MonoBehaviour:
   grid: {fileID: 139587194}
   blackPlacement: {fileID: 11400000, guid: 24331787711a668479b711d10ad8cab0, type: 2}
   whitePlacement: {fileID: 11400000, guid: facdaa6a752c1c24e840b93f65fa11cb, type: 2}
+  whiteData: {fileID: 11400000, guid: 98594e4762a3d6f45ada8c97653a5fe6, type: 2}
+  blackData: {fileID: 11400000, guid: f2fe5f63022da324fb36a7537380cbd5, type: 2}
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0

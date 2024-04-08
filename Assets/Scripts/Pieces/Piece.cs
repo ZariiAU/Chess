@@ -6,7 +6,7 @@ using UnityEngine;
 
 public abstract class Piece : MonoBehaviour
 {
-    public Team team;
+    public AllegianceData allegiance;
     public List<Tile> legalMovePoints;
 
     public abstract void CheckLegalMoves();
