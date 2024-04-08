@@ -23,10 +23,6 @@ public class PieceSpawner : MonoBehaviour
     {
         List<Piece> piecesSpawned = new List<Piece>();
 
-        GameObject pieceContainer = new GameObject();
-        pieceContainer.name = containerName;
-        pieceContainer.transform.parent = transform;
-
         foreach (var key in initialPositions.Keys)
         {
             initialPositions.TryGetValue(key, out Piece piece);
@@ -34,9 +30,9 @@ public class PieceSpawner : MonoBehaviour
             {
                 GameObject go = Instantiate(piece.gameObject);
 
-                go.transform.position = new Vector3(key.x, 0, key.y);
+                go.transform.position = grid.gridDimensions[(int)key.x,(int)key.y].transform.position;
                 go.gameObject.name = $"{gameObjectName}: {key.x}:{key.y}";
-                go.transform.parent = pieceContainer.transform;
+                go.transform.parent = grid.gridDimensions[(int)key.x, (int)key.y].transform;
 
                 grid.gridDimensions[(int)key.x, (int)key.y].pieceOnTile = piece; // Setup the tile underneath this piece
 

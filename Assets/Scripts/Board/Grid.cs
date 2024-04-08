@@ -28,7 +28,7 @@ public class Grid : MonoBehaviour
                 GameObject go = Instantiate(tilePrefab, transform);
 
                 gridDimensions[x,y] = go.GetComponent<Tile>();
-                go.transform.position = pos;
+                go.transform.localPosition = pos;
                 go.transform.localScale = new Vector3(tileSizeX, tileSizeY, 1);
 
                 Material mat = go.GetComponent<MeshRenderer>().material;

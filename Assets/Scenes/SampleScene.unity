@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -171,7 +171,7 @@ Transform:
   m_GameObject: {fileID: 139587193}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -568,7 +568,20 @@ MonoBehaviour:
     m_ActionId: 83a282b5-9ae4-447b-9357-35adf5a1dbf5
     m_ActionName: Player/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1610447371}
+        m_TargetAssemblyTypeName: Assets.Camera.Scripts.StrategyCameraController,
+          Assembly-CSharp
+        m_MethodName: OnMouseRotate
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: d023d773-00c5-4084-a454-8ccbc73002a1
     m_ActionName: Player/Look[/Mouse/delta]
   - m_PersistentCalls:
@@ -661,6 +674,40 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 59b35e2a-7fee-4179-b91a-28b5e20cfdd4
     m_ActionName: Player/Accelerate[/Keyboard/leftShift]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1610447371}
+        m_TargetAssemblyTypeName: Assets.Camera.Scripts.StrategyCameraController,
+          Assembly-CSharp
+        m_MethodName: OnMouseLock
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: a023aa6d-b3b4-42de-88f6-752dd5bb410a
+    m_ActionName: Player/MouseRotationUnlock[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1610447371}
+        m_TargetAssemblyTypeName: Assets.Camera.Scripts.StrategyCameraController,
+          Assembly-CSharp
+        m_MethodName: OnCamRotate
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 837c8658-25b9-4a9a-b32e-e1af38636399
+    m_ActionName: Player/CameraRotation[/Keyboard/q,/Keyboard/e]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -679,12 +726,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 330585545}
-  movementSpeed: 5
-  acceleratedMovementSpeed: 8
-  smoothRate: 3
-  keyboardRotationSpeed: 2
-  mouseRotationSpeed: 2
+  movementSpeed: 4.39
+  acceleratedMovementSpeed: 8.6
+  smoothRate: 3.8
+  keyboardRotationSpeed: 0.5
+  mouseRotationSpeed: 8.89
   zoomSpeed: {x: 0, y: -5, z: 5}
+  maxZoom: 30
+  minZoom: 70
 --- !u!4 &1610447372
 Transform:
   m_ObjectHideFlags: 0
