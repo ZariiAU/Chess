@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Rook : Piece
 {
+    public override void CheckLegalMoves()
+    {
+        throw new System.NotImplementedException();
+    }
+
     // Start is called before the first frame update
     void Start()
     {

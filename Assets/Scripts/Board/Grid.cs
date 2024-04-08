@@ -9,7 +9,7 @@ public class Grid : MonoBehaviour
     [SerializeField] public GameObject boardGameObject;
     [SerializeField] public int xSize = 8;
     [SerializeField] public int ySize = 8;
-    [TableMatrix] public GameObject[,] gridDimensions;
+    [TableMatrix] public Tile[,] gridDimensions;
     [SerializeField] float tileSizeX = 1;
     [SerializeField] float tileSizeY = 1;
     [SerializeField] GameObject tilePrefab;
@@ -18,7 +18,7 @@ public class Grid : MonoBehaviour
 
     void Awake()
     {
-       gridDimensions = new GameObject[xSize, ySize];
+       gridDimensions = new Tile[xSize, ySize];
 
        for(int x = 0; x < xSize; x++)
         {
@@ -27,7 +27,7 @@ public class Grid : MonoBehaviour
                 Vector3 pos = new Vector3(x,0,y);
                 GameObject go = Instantiate(tilePrefab, transform);
 
-                gridDimensions[x,y] = go;
+                gridDimensions[x,y] = go.GetComponent<Tile>();
                 go.transform.position = pos;
                 go.transform.localScale = new Vector3(tileSizeX, tileSizeY, 1);
 
@@ -49,7 +49,7 @@ public class Grid : MonoBehaviour
                     go.name = whiteTileName;
                     go.GetComponentInChildren<TMP_Text>().text = whiteTileName;
                 }
-                gridDimensions.SetValue(go, x, y);
+                gridDimensions.SetValue(go.GetComponent<Tile>(), x, y);
             }
         }
     }
