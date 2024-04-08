@@ -38,6 +38,12 @@ namespace Assets.Camera.Scripts
         private Vector3 targetZoom;
         private Quaternion targetRotation;
 
+        // Zoom Parameters
+        [SerializeField, Range(0,100) ,Tooltip("The closest point on the Y axis")] 
+        private float maxZoom = 30;
+        [SerializeField, Range(0, 100), Tooltip("The furthest point on the Y axis")] 
+        private float minZoom = 70;
+
         private void Start()
         {
             targetPosition = transform.position;
@@ -85,13 +91,13 @@ namespace Assets.Camera.Scripts
         {
             if (ctx.performed)
             {
-                if (ctx.ReadValue<Vector2>().y > 0 && targetZoom.y > 30)
+                if (ctx.ReadValue<Vector2>().y > 0 && targetZoom.y > maxZoom)
                     targetZoom += zoomSpeed;
-                if (ctx.ReadValue<Vector2>().y < 0 && targetZoom.y < 70)
+                if (ctx.ReadValue<Vector2>().y < 0 && targetZoom.y < minZoom)
                     targetZoom -= zoomSpeed;
 
                 //Vector3.ClampMagnitude(targetZoom, 76);
-                Mathf.Clamp(targetZoom.y, 30, 76);
+                Mathf.Clamp(targetZoom.y, maxZoom, minZoom);
 
             }
         }
