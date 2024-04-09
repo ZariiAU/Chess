@@ -44,8 +44,13 @@ public class PlayerInteraction : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, 100))
         {
-            Debug.Log(hit.transform.name);
-            Debug.Log("hit");
+            hit.collider.gameObject.TryGetComponent<Tile>(out Tile selectedTile);
+            Piece piece = selectedTile.pieceOnTile;
         }
+    }
+
+    void ShowLegalMoves(Piece piece)
+    {
+        piece.CheckLegalMoves();
     }
 }

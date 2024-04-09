@@ -153,7 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b99273dfab2afca4892c78882cca3e09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boardGameObject: {fileID: 0}
+  boardGameObject: {fileID: 1918125458}
   xSize: 8
   ySize: 8
   tileSizeX: 1
@@ -171,7 +171,7 @@ Transform:
   m_GameObject: {fileID: 139587193}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 4.83, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -732,8 +732,8 @@ MonoBehaviour:
   keyboardRotationSpeed: 0.5
   mouseRotationSpeed: 8.89
   zoomSpeed: {x: 0, y: -5, z: 5}
-  maxZoom: 30
-  minZoom: 70
+  maxZoom: 0
+  minZoom: 10
 --- !u!4 &1610447372
 Transform:
   m_ObjectHideFlags: 0
@@ -762,6 +762,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e3175c75890a1b458f6d364c37a398b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1918125458 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4561515593392651208, guid: a023cb975c61a514d9e9c1ef8849d970,
+    type: 3}
+  m_PrefabInstance: {fileID: 6786193509430583143}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6786193509430583143
 PrefabInstance:
   m_ObjectHideFlags: 0

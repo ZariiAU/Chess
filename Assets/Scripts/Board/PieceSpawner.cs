@@ -28,13 +28,18 @@ public class PieceSpawner : MonoBehaviour
             initialPositions.TryGetValue(key, out Piece piece);
             if (piece)
             {
+                Tile targetTile = grid.gridDimensions[(int)key.x, (int)key.y];
                 GameObject go = Instantiate(piece.gameObject);
 
-                go.transform.position = grid.gridDimensions[(int)key.x,(int)key.y].transform.position;
-                go.gameObject.name = $"{gameObjectName}: {key.x}:{key.y}";
-                go.transform.parent = grid.gridDimensions[(int)key.x, (int)key.y].transform;
+                Piece pieceClone = go.GetComponent<Piece>();
+                pieceClone.currentTile = targetTile;
+                pieceClone.allegiance = team;
 
-                grid.gridDimensions[(int)key.x, (int)key.y].pieceOnTile = piece; // Setup the tile underneath this piece
+                go.transform.position = targetTile.transform.position;
+                go.gameObject.name = $"{gameObjectName}: {key.x}:{key.y}";
+                go.transform.parent = targetTile.transform;
+
+                targetTile.pieceOnTile = piece; // Setup the tile underneath this piece
 
                 foreach(MeshRenderer mr in go.GetComponentsInChildren<MeshRenderer>())
                 {
