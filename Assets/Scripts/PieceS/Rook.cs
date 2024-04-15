@@ -11,7 +11,7 @@ public class Rook : Piece
         List<Tile> list = new List<Tile>();
 
         // East of Piece
-        for (int i = 1; i > currentTile.gridPos.x && i < gridObject.gridDimensions.GetLength(0); i++)
+        for (int i = (int)currentTile.gridPos.x + 1; i < gridObject.gridDimensions.GetLength(0); i++) // I = 1 to exclude self
         {
             Tile nextTile = gridObject.gridDimensions[i, (int)currentTile.gridPos.y];
             if (nextTile.pieceOnTile)
@@ -30,7 +30,7 @@ public class Rook : Piece
         }
 
         //// North of Piece
-        for (int i = 1; i > currentTile.gridPos.y && i < gridObject.gridDimensions.GetLength(1); i++)
+        for (int i = (int)currentTile.gridPos.y + 1; i < gridObject.gridDimensions.GetLength(1); i++)
         {
             Tile nextTile = gridObject.gridDimensions[(int)currentTile.gridPos.x, i];
             if (nextTile.pieceOnTile)

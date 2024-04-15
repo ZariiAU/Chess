@@ -6,7 +6,7 @@ public class Bishop : Piece
 {
     public override List<Tile> CheckLegalMoves()
     {
-        throw new System.NotImplementedException();
+        return new List<Tile>();
     }
 
     // Start is called before the first frame update

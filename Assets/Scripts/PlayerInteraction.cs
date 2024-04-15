@@ -39,8 +39,6 @@ public class PlayerInteraction : MonoBehaviour
         }
     }
 
-    
-
     public void OnClick(InputAction.CallbackContext ctx)
     {
         if (ctx.canceled)
@@ -49,23 +47,42 @@ public class PlayerInteraction : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, 100))
             {
-                hit.collider.gameObject.TryGetComponent<Tile>(out Tile _selectedTile);
-                if (selectedTile && _selectedTile == selectedTile)
+                hit.collider.gameObject.TryGetComponent<Tile>(out Tile clickedTile);
+                if (selectedTile && clickedTile == selectedTile)
                 {
-                    ToggleLegalMoveEffect(_selectedTile.pieceOnTile, false);
+                    ToggleLegalMoveEffect(clickedTile.pieceOnTile, false);
                     selectedTile = null;
                 }
-                else if (!selectedTile && _selectedTile.pieceOnTile)
+                else if (!selectedTile && clickedTile.pieceOnTile)
                 {
-                    ToggleLegalMoveEffect(_selectedTile.pieceOnTile, true);
-                    selectedTile = _selectedTile;
+                    ToggleLegalMoveEffect(clickedTile.pieceOnTile, true);
+                    selectedTile = clickedTile;
                 }
-                else if (selectedTile && selectedTile != _selectedTile)
+                else if (selectedTile && !clickedTile.pieceOnTile && selectedTile.pieceOnTile.CheckLegalMoves().Contains(clickedTile)) // Move into empty space
                 {
                     ToggleLegalMoveEffect(selectedTile.pieceOnTile, false);
-                    selectedTile = _selectedTile;
+                    clickedTile.pieceOnTile = selectedTile.pieceOnTile;
+                    selectedTile.pieceOnTile.transform.position = clickedTile.transform.position;
+                    selectedTile.pieceOnTile.currentTile = clickedTile;
+                    selectedTile.pieceOnTile = null;
+                    selectedTile = null;
+                }
+                else if (selectedTile && !clickedTile.pieceOnTile && !selectedTile.pieceOnTile.CheckLegalMoves().Contains(clickedTile))
+                {
+                    ToggleLegalMoveEffect(selectedTile.pieceOnTile, false);
+                    selectedTile = null;
+                }
+                else if (selectedTile && selectedTile != clickedTile)
+                {
+                    ToggleLegalMoveEffect(selectedTile.pieceOnTile, false);
+                    selectedTile = clickedTile;
                     ToggleLegalMoveEffect(selectedTile.pieceOnTile, true);
                 }
+            }
+            else if(selectedTile)
+            {
+                ToggleLegalMoveEffect(selectedTile.pieceOnTile, false);
+                selectedTile = null;
             }
         }
     }
