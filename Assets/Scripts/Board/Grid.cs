@@ -50,6 +50,7 @@ public class Grid : MonoBehaviour
                     go.GetComponentInChildren<TMP_Text>().text = whiteTileName;
                 }
                 gridDimensions.SetValue(go.GetComponent<Tile>(), x, y);
+                gridDimensions[x, y].gridPos = new Vector2(x, y);
             }
         }
     }

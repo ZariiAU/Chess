@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Knight : Piece
 {
-    public override void CheckLegalMoves()
+    public override List<Tile> CheckLegalMoves()
     {
         throw new System.NotImplementedException();
     }

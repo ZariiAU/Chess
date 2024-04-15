@@ -8,4 +8,5 @@ public class Tile : MonoBehaviour
     public Piece pieceOnTile;
     public GameObject highlightEffect;
     public GameObject legalMoveEffect;
+    public Vector2 gridPos;
 }

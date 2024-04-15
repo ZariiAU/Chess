@@ -7,11 +7,11 @@ public class PieceSpawner : MonoBehaviour
     [SerializeField] Grid grid;
     [SerializeField] PiecePlacement blackPlacement;
     [SerializeField] PiecePlacement whitePlacement;
-    [SerializeField] AllegianceData whiteData;
-    [SerializeField] AllegianceData blackData;
+    [SerializeField] public AllegianceData whiteData;
+    [SerializeField] public AllegianceData blackData;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         grid = GetComponent<Grid>();
 
@@ -32,16 +32,17 @@ public class PieceSpawner : MonoBehaviour
                 GameObject go = Instantiate(piece.gameObject);
 
                 Piece pieceClone = go.GetComponent<Piece>();
-                pieceClone.currentTile = targetTile;
-                pieceClone.allegiance = team;
 
                 go.transform.position = targetTile.transform.position;
                 go.gameObject.name = $"{gameObjectName}: {key.x}:{key.y}";
                 go.transform.parent = targetTile.transform;
 
-                targetTile.pieceOnTile = piece; // Setup the tile underneath this piece
+                targetTile.pieceOnTile = pieceClone; // Setup the tile underneath this piece
+                pieceClone.currentTile = targetTile;
+                pieceClone.gridObject = grid;
+                pieceClone.allegiance = team;
 
-                foreach(MeshRenderer mr in go.GetComponentsInChildren<MeshRenderer>())
+                foreach (MeshRenderer mr in go.GetComponentsInChildren<MeshRenderer>())
                 {
                     mr.material = team.teamMaterial;
                 }

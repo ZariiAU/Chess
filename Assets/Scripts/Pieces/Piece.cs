@@ -11,5 +11,5 @@ public abstract class Piece : MonoBehaviour
     public Grid gridObject;
     public Tile currentTile;
 
-    public abstract void CheckLegalMoves();
+    public abstract List<Tile> CheckLegalMoves();
 }

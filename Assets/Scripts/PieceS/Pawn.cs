@@ -5,18 +5,10 @@ using UnityEngine;
 public class Pawn : Piece
 {
     int maxMovement = 1;
-    public override void CheckLegalMoves()
+    public override List<Tile> CheckLegalMoves()
     {
-        for (int x = 0; x < gridObject.xSize; x++)
-        {
-            for (int y = 0; y < gridObject.ySize; y++)
-            {
-                if (gridObject.gridDimensions[x, y].pieceOnTile.gameObject == gameObject)
-                {
-                    
-                }
-            }
-        }
+        throw new System.NotImplementedException();
+    }
 
     // Start is called before the first frame update
     void Start()

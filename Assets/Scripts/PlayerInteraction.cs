@@ -6,7 +6,8 @@ using UnityEngine.InputSystem;
 public class PlayerInteraction : MonoBehaviour
 {
     Camera _camera;
-    Tile hoveredTile;
+    [SerializeField] Tile hoveredTile;
+    [SerializeField] Tile selectedTile;
 
     void Awake()
     {
@@ -38,19 +39,44 @@ public class PlayerInteraction : MonoBehaviour
         }
     }
 
+    
+
     public void OnClick(InputAction.CallbackContext ctx)
     {
-        Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, 100))
+        if (ctx.canceled)
         {
-            hit.collider.gameObject.TryGetComponent<Tile>(out Tile selectedTile);
-            Piece piece = selectedTile.pieceOnTile;
+            Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, 100))
+            {
+                hit.collider.gameObject.TryGetComponent<Tile>(out Tile _selectedTile);
+                if (selectedTile && _selectedTile == selectedTile)
+                {
+                    ToggleLegalMoveEffect(_selectedTile.pieceOnTile, false);
+                    selectedTile = null;
+                }
+                else if (!selectedTile && _selectedTile.pieceOnTile)
+                {
+                    ToggleLegalMoveEffect(_selectedTile.pieceOnTile, true);
+                    selectedTile = _selectedTile;
+                }
+                else if (selectedTile && selectedTile != _selectedTile)
+                {
+                    ToggleLegalMoveEffect(selectedTile.pieceOnTile, false);
+                    selectedTile = _selectedTile;
+                    ToggleLegalMoveEffect(selectedTile.pieceOnTile, true);
+                }
+            }
         }
     }
-
-    void ShowLegalMoves(Piece piece)
+    void ToggleLegalMoveEffect(Piece inputPiece, bool effectEnabled)
     {
-        piece.CheckLegalMoves();
+        if(inputPiece.CheckLegalMoves().Count > 0)
+        {
+            foreach (Tile t in inputPiece.CheckLegalMoves())
+            {
+                t.legalMoveEffect.SetActive(effectEnabled);
+            }
+        }
     }
 }
