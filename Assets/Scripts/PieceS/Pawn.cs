@@ -25,6 +25,7 @@ public class Pawn : Piece
                 list.Add(nextTile);
             }
 
+            // ATTACK MOVES
             if(currentTile.gridPos.y < gridObject.gridDimensions.GetLength(1) - 1) // Don't check anything above us if we're near the north edge of the grid
             {
                 // Don't check NW if we're at the min x bounds
@@ -73,7 +74,8 @@ public class Pawn : Piece
                 }
                 list.Add(nextTile);
             }
-
+            
+            // ATTACK MOVES
             if (currentTile.gridPos.y > 0)
             {
                 if(currentTile.gridPos.x > 0)
