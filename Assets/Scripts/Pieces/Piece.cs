@@ -186,7 +186,7 @@ public abstract class Piece : MonoBehaviour
                         if (timesRan < spacesToMove || spacesToMove == 0)
                         {
                             timesRan++;
-                            if (y > 1)
+                            if (y > 0)
                             {
                                 y--;
 
@@ -221,7 +221,7 @@ public abstract class Piece : MonoBehaviour
                         if (timesRan < spacesToMove || spacesToMove == 0)
                         {
                             timesRan++;
-                            if (y > 1)
+                            if (y > 0)
                             {
                                 y--;
 
