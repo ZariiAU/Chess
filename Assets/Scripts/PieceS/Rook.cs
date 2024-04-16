@@ -23,7 +23,8 @@ public class Rook : Piece
                 }
                 else
                 {
-                    // ATTACK!!!
+                    list.Add(nextTile);
+                    break;
                 }
             }
             list.Add(nextTile);
@@ -42,7 +43,8 @@ public class Rook : Piece
                 }
                 else
                 {
-                    // ATTACK!!!
+                    list.Add(nextTile);
+                    break;
                 }
             }
             list.Add(nextTile);
@@ -61,7 +63,8 @@ public class Rook : Piece
                 }
                 else
                 {
-                    // ATTACK!!!
+                    list.Add(nextTile);
+                    break;
                 }
             }
             list.Add(nextTile);
@@ -80,7 +83,8 @@ public class Rook : Piece
                 }
                 else
                 {
-                    // ATTACK!!!
+                    list.Add(nextTile);
+                    break;
                 }
             }
             list.Add(nextTile);
