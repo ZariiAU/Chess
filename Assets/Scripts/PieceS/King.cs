@@ -6,7 +6,17 @@ public class King : Piece
 {
     public override List<Tile> CheckLegalMoves()
     {
-        return new List<Tile>();
+        List<Tile> list = new List<Tile>();
+        MoveLateral(1, DirectionLateral.N, list);
+        MoveLateral(1, DirectionLateral.E, list);
+        MoveLateral(1, DirectionLateral.S, list);
+        MoveLateral(1, DirectionLateral.W, list);
+
+        MoveDiagonal(1, DirectionDiagonal.NE, list);
+        MoveDiagonal(1, DirectionDiagonal.NW, list);
+        MoveDiagonal(1, DirectionDiagonal.SE, list);
+        MoveDiagonal(1, DirectionDiagonal.SW, list);
+        return list;
     }
 
     // Start is called before the first frame update
