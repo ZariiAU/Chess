@@ -64,6 +64,7 @@ public class PlayerInteraction : MonoBehaviour
                 {
                     ToggleLegalMoveEffect(selectedTile.pieceOnTile, false);
                     clickedTile.pieceOnTile = selectedTile.pieceOnTile;
+                    selectedTile.pieceOnTile.OnMoved.Invoke();
                     selectedTile.pieceOnTile.transform.position = clickedTile.transform.position;
                     selectedTile.pieceOnTile.currentTile = clickedTile;
                     selectedTile.pieceOnTile = null;
@@ -77,7 +78,9 @@ public class PlayerInteraction : MonoBehaviour
                     ToggleLegalMoveEffect(selectedTile.pieceOnTile, false);
                     clickedTile.pieceOnTile.gameObject.SetActive(false); // Hide Game Object or do something else
                     clickedTile.pieceOnTile = null;
-                    // TRIGGER A PIECE TAKEN EVENT
+
+                    selectedTile.pieceOnTile.OnPieceTaken.Invoke();
+
                     clickedTile.pieceOnTile = selectedTile.pieceOnTile;
                     selectedTile.pieceOnTile.transform.position = clickedTile.transform.position;
                     selectedTile.pieceOnTile.currentTile = clickedTile;
