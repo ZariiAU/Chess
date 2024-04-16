@@ -11,84 +11,17 @@ public class Rook : Piece
         List<Tile> list = new List<Tile>();
 
         // East of Piece
-        for (int i = (int)currentTile.gridPos.x + 1; i < gridObject.gridDimensions.GetLength(0); i++) // I = 1 to exclude self
-        {
-            Tile nextTile = gridObject.gridDimensions[i, (int)currentTile.gridPos.y];
-            if (nextTile.pieceOnTile)
-            {
-                Piece nextPiece = nextTile.pieceOnTile;
-                if (nextPiece && allegiance == nextPiece.allegiance)
-                {
-                    break;
-                }
-                else
-                {
-                    list.Add(nextTile);
-                    break;
-                }
-            }
-            list.Add(nextTile);
-        }
+        MoveLateral(0, DirectionLateral.E, list);
 
         //// North of Piece
-        for (int i = (int)currentTile.gridPos.y + 1; i < gridObject.gridDimensions.GetLength(1); i++)
-        {
-            Tile nextTile = gridObject.gridDimensions[(int)currentTile.gridPos.x, i];
-            if (nextTile.pieceOnTile)
-            {
-                Piece nextPiece = nextTile.pieceOnTile;
-                if (nextPiece && allegiance == nextPiece.allegiance)
-                {
-                    break;
-                }
-                else
-                {
-                    list.Add(nextTile);
-                    break;
-                }
-            }
-            list.Add(nextTile);
-        }
+        MoveLateral(0, DirectionLateral.N, list);
 
         // West of Piece
-        for (int i = (int)currentTile.gridPos.x - 1; i >= 0; i--)
-        {
-            Tile nextTile = gridObject.gridDimensions[i, (int)currentTile.gridPos.y];
-            if (nextTile.pieceOnTile)
-            {
-                Piece nextPiece = nextTile.pieceOnTile;
-                if (nextPiece && allegiance == nextPiece.allegiance)
-                {
-                    break;
-                }
-                else
-                {
-                    list.Add(nextTile);
-                    break;
-                }
-            }
-            list.Add(nextTile);
-        }
+        MoveLateral(0, DirectionLateral.W, list);
 
         // South of Piece
-        for (int i = (int)currentTile.gridPos.y - 1; i >= 0; i--)
-        {
-            Tile nextTile = gridObject.gridDimensions[(int)currentTile.gridPos.x, i];
-            if (nextTile.pieceOnTile)
-            {
-                Piece nextPiece = nextTile.pieceOnTile;
-                if (nextPiece && allegiance == nextPiece.allegiance)
-                {
-                    break;
-                }
-                else
-                {
-                    list.Add(nextTile);
-                    break;
-                }
-            }
-            list.Add(nextTile);
-        }
+        MoveLateral(0, DirectionLateral.S, list);
         return list;
+
     }
 }

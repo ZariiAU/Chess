@@ -11,19 +11,7 @@ public class Pawn : Piece
         //// North of Piece if on white team
         if(allegiance == gridObject.GetComponent<PieceSpawner>().whiteData)
         {
-            for (int i = (int)currentTile.gridPos.y + 1; i < (int)currentTile.gridPos.y + 2 && i < gridObject.gridDimensions.GetLength(1); i++)
-            {
-                Tile nextTile = gridObject.gridDimensions[(int)currentTile.gridPos.x, i];
-                if (nextTile.pieceOnTile)
-                {
-                    Piece nextPiece = nextTile.pieceOnTile;
-                    if (nextPiece)
-                    {
-                        break;
-                    }
-                }
-                list.Add(nextTile);
-            }
+            MoveLateral(1, DirectionLateral.N, list, false);
 
             // ATTACK MOVES
             if(currentTile.gridPos.y < gridObject.gridDimensions.GetLength(1) - 1) // Don't check anything above us if we're near the north edge of the grid
@@ -34,11 +22,7 @@ public class Pawn : Piece
                     Tile attackTileNW = gridObject.gridDimensions[(int)currentTile.gridPos.x - 1, (int)currentTile.gridPos.y + 1];
                     if (attackTileNW.pieceOnTile)
                     {
-                        Piece nextPiece = attackTileNW.pieceOnTile;
-                        if (nextPiece && allegiance != nextPiece.allegiance)
-                        {
-                            list.Add(attackTileNW);
-                        }
+                        MoveDiagonal(1, DirectionDiagonal.NW, list, true);
                     }
                 }
 
@@ -48,11 +32,7 @@ public class Pawn : Piece
                     Tile attackTileNE = gridObject.gridDimensions[(int)currentTile.gridPos.x + 1, (int)currentTile.gridPos.y + 1];
                     if (attackTileNE.pieceOnTile)
                     {
-                        Piece nextPiece = attackTileNE.pieceOnTile;
-                        if (nextPiece && allegiance != nextPiece.allegiance)
-                        {
-                            list.Add(attackTileNE);
-                        }
+                        MoveDiagonal(1, DirectionDiagonal.NE, list, true);
                     }
                 }
             }
@@ -61,20 +41,8 @@ public class Pawn : Piece
         // South of piece if on anything else
         else
         {
-            for (int i = (int)currentTile.gridPos.y - 1; i >= 0 && i > (int)currentTile.gridPos.y - 2; i--)
-            {
-                Tile nextTile = gridObject.gridDimensions[(int)currentTile.gridPos.x, i];
-                if (nextTile.pieceOnTile)
-                {
-                    Piece nextPiece = nextTile.pieceOnTile;
-                    if (nextPiece)
-                    {
-                        break;
-                    }
-                }
-                list.Add(nextTile);
-            }
-            
+            MoveLateral(1, DirectionLateral.S, list, false);
+
             // ATTACK MOVES
             if (currentTile.gridPos.y > 0)
             {
@@ -83,11 +51,7 @@ public class Pawn : Piece
                     Tile attackTileSW = gridObject.gridDimensions[(int)currentTile.gridPos.x - 1, (int)currentTile.gridPos.y - 1];
                     if (attackTileSW.pieceOnTile)
                     {
-                        Piece nextPiece = attackTileSW.pieceOnTile;
-                        if (nextPiece && allegiance != nextPiece.allegiance)
-                        {
-                            list.Add(attackTileSW);
-                        }
+                        MoveDiagonal(1, DirectionDiagonal.SW, list, true);
                     }
                 }
                 
@@ -96,11 +60,7 @@ public class Pawn : Piece
                     Tile attackTileSE = gridObject.gridDimensions[(int)currentTile.gridPos.x + 1, (int)currentTile.gridPos.y - 1];
                     if (attackTileSE.pieceOnTile)
                     {
-                        Piece nextPiece = attackTileSE.pieceOnTile;
-                        if (nextPiece && allegiance != nextPiece.allegiance)
-                        {
-                            list.Add(attackTileSE);
-                        }
+                        MoveDiagonal(1, DirectionDiagonal.SE, list, true);
                     }
                 }
             }
