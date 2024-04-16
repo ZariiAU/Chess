@@ -48,16 +48,18 @@ public class PlayerInteraction : MonoBehaviour
             if (Physics.Raycast(ray, out hit, 100))
             {
                 hit.collider.gameObject.TryGetComponent<Tile>(out Tile clickedTile);
-                if (selectedTile && clickedTile == selectedTile)
+                if (selectedTile && clickedTile == selectedTile) // Select the selected tile again should clear the selection
                 {
                     ToggleLegalMoveEffect(clickedTile.pieceOnTile, false);
                     selectedTile = null;
                 }
-                else if (!selectedTile && clickedTile.pieceOnTile)
+
+                else if (!selectedTile && clickedTile.pieceOnTile) // Selected tile with a piece on it
                 {
                     ToggleLegalMoveEffect(clickedTile.pieceOnTile, true);
                     selectedTile = clickedTile;
                 }
+
                 else if (selectedTile && !clickedTile.pieceOnTile && selectedTile.pieceOnTile.CheckLegalMoves().Contains(clickedTile)) // Move into empty space
                 {
                     ToggleLegalMoveEffect(selectedTile.pieceOnTile, false);
@@ -67,12 +69,29 @@ public class PlayerInteraction : MonoBehaviour
                     selectedTile.pieceOnTile = null;
                     selectedTile = null;
                 }
-                else if (selectedTile && !clickedTile.pieceOnTile && !selectedTile.pieceOnTile.CheckLegalMoves().Contains(clickedTile))
+
+                else if (selectedTile && clickedTile.pieceOnTile && 
+                    clickedTile.pieceOnTile.allegiance != selectedTile.pieceOnTile.allegiance && 
+                    selectedTile.pieceOnTile.CheckLegalMoves().Contains(clickedTile)) // Take an enemy piece
+                {
+                    ToggleLegalMoveEffect(selectedTile.pieceOnTile, false);
+                    clickedTile.pieceOnTile.gameObject.SetActive(false); // Hide Game Object or do something else
+                    clickedTile.pieceOnTile = null;
+                    // TRIGGER A PIECE TAKEN EVENT
+                    clickedTile.pieceOnTile = selectedTile.pieceOnTile;
+                    selectedTile.pieceOnTile.transform.position = clickedTile.transform.position;
+                    selectedTile.pieceOnTile.currentTile = clickedTile;
+                    selectedTile.pieceOnTile = null;
+                    selectedTile = null;
+                }
+
+                else if (selectedTile && !clickedTile.pieceOnTile && !selectedTile.pieceOnTile.CheckLegalMoves().Contains(clickedTile)) // Selected a position to move that was invalid
                 {
                     ToggleLegalMoveEffect(selectedTile.pieceOnTile, false);
                     selectedTile = null;
                 }
-                else if (selectedTile && selectedTile != clickedTile)
+
+                else if (selectedTile && selectedTile != clickedTile) // Selected another piece
                 {
                     ToggleLegalMoveEffect(selectedTile.pieceOnTile, false);
                     selectedTile = clickedTile;
