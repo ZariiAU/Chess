@@ -12,7 +12,7 @@ public class Bishop : Piece
         // CHECK NE
         for (int x = (int)currentTile.gridPos.x + 1; x < gridObject.gridDimensions.GetLength(0) && currentTile.gridPos.x < gridObject.gridDimensions.GetLength(0) - 1; x++) 
         {
-            if (y < gridObject.gridDimensions.GetLength(1))
+            if (y < gridObject.gridDimensions.GetLength(1) - 1)
             {
                 y++;
 
@@ -39,7 +39,7 @@ public class Bishop : Piece
         // CHECK NW
         for (int x = (int)currentTile.gridPos.x - 1; x >= 0 && currentTile.gridPos.x > 0; x--) 
         {
-            if(y < gridObject.gridDimensions.GetLength(1))
+            if(y < gridObject.gridDimensions.GetLength(1) - 1)
             {
                 y++;
 
@@ -66,7 +66,7 @@ public class Bishop : Piece
         // CHECK SE
         for (int x = (int)currentTile.gridPos.x + 1; x < gridObject.gridDimensions.GetLength(0); x++) 
         {
-            if(y > 0)
+            if(y > 1)
             {
                 y--;
 
@@ -91,9 +91,9 @@ public class Bishop : Piece
 
         y = (int)currentTile.gridPos.y;
         // CHECK SW
-        for (int x = (int)currentTile.gridPos.x - 1; x > 0; x--) 
+        for (int x = (int)currentTile.gridPos.x - 1; x >= 0 && currentTile.gridPos.x > 0; x--) 
         {
-            if (y > 0)
+            if (y > 1)
             {
                 y--;
 
